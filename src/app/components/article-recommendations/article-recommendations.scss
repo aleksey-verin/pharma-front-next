@@ -80,14 +80,19 @@
 }
 
 .article-recommendation__slide {
-  height: 622px;
+  height: 622px !important;
   width: 267px;
   display: flex;
   flex-direction: column;
   background: $white;
   border-radius: 10px;
   box-sizing: border-box;
-  padding: 29px 17px  53px 35px;
+  // padding: 29px 17px  53px 35px;
+}
+
+.article-recommendation__link {
+  display: block;
+  padding: 30px;
 }
 
 .article-recommendation__caption {
@@ -115,19 +120,22 @@
     line-height: 135%;
     margin: 0 0 30px 0;
     flex: 1 0 auto;
+    height: 175px;
+    overflow: hidden;
 }
 
 .article-recommendation__image {
+  width: 301px;
+  height: 300px;
     img {
       border-radius: 10px;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
     
 }
 
-.article-recommendation__swiper .swiper-slide {
-  width: 362px;
-  padding: 30px;
-}
 
 
 

@@ -3,12 +3,40 @@ import Image from 'next/image'
 import './article-recommendations.scss'
 // Import Swiper React components
 import { Swiper, SwiperSlide } from 'swiper/react'
-import {Navigation} from 'swiper/modules'
+import { Navigation } from 'swiper/modules'
 
 // Import Swiper styles
 import 'swiper/css'
+import { ArticleList } from '../articles-list/types'
+import Link from 'next/link'
 
-const ArticleRecommendation = () => {
+const ArticleRecommendation = ({
+  articlesList,
+  currentArticleSlug,
+}: {
+  articlesList: ArticleList
+  currentArticleSlug: string
+}) => {
+  const slidesWithoutCurrent = articlesList.data.filter(
+    (article) => article.id !== +currentArticleSlug
+  )
+  const slides = slidesWithoutCurrent.map((article) => (
+    <SwiperSlide key={article.id} className='article-recommendation__slide'>
+      <Link href={`/articles/${article.id}`} className='article-recommendation__link'>
+        <h3 className='article-recommendation__caption'>{article.attributes.Title}</h3>
+        <p className='article-recommendation__description'>{article.attributes.Description}</p>
+        <div className='article-recommendation__image'>
+          <Image
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}${article.attributes.ImageBlock.data.attributes.url}`}
+            alt=''
+            width={301}
+            height={300}
+          />
+        </div>
+      </Link>
+    </SwiperSlide>
+  ))
+
   return (
     <section className='article-recommendation' id='article-recommendation'>
       <div className='article-recommendation__container container'>
@@ -49,174 +77,10 @@ const ArticleRecommendation = () => {
           navigation={{
             prevEl: '.article-recommendation__arrow-prev',
             nextEl: '.article-recommendation__arrow-next',
-
           }}
         >
-          <SwiperSlide className='article-recommendation__slide'>
-            <h3 className='article-recommendation__caption'>Название статьи</h3>
-            <p className='article-recommendation__description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <div className='article-recommendation__image'>
-              <Image src='/assets/img/article-page/slider-1.jpg' alt='' width={301} height={300} />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='article-recommendation__slide'>
-            <h3 className='article-recommendation__caption'>Название статьи</h3>
-            <p className='article-recommendation__description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <div className='article-recommendation__image'>
-              <Image src='/assets/img/article-page/slider-1.jpg' alt='' width={301} height={300} />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='article-recommendation__slide'>
-            <h3 className='article-recommendation__caption'>Название статьи</h3>
-            <p className='article-recommendation__description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <div className='article-recommendation__image'>
-              <Image src='/assets/img/article-page/slider-1.jpg' alt='' width={301} height={300} />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='article-recommendation__slide'>
-            <h3 className='article-recommendation__caption'>Название статьи</h3>
-            <p className='article-recommendation__description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <div className='article-recommendation__image'>
-              <Image src='/assets/img/article-page/slider-1.jpg' alt='' width={301} height={300} />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='article-recommendation__slide'>
-            <h3 className='article-recommendation__caption'>Название статьи</h3>
-            <p className='article-recommendation__description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <div className='article-recommendation__image'>
-              <Image src='/assets/img/article-page/slider-1.jpg' alt='' width={301} height={300} />
-            </div>
-          </SwiperSlide>
-          <SwiperSlide className='article-recommendation__slide'>
-            <h3 className='article-recommendation__caption'>Название статьи</h3>
-            <p className='article-recommendation__description'>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-            <div className='article-recommendation__image'>
-              <Image src='/assets/img/article-page/slider-1.jpg' alt='' width={301} height={300} />
-            </div>
-          </SwiperSlide>
+          {slides}
         </Swiper>
-        {/* <div className='swiper article-recommendation__swiper'>
-          <div className='swiper-wrapper  article-recommendation__wrapper'>
-            <div className='swiper-slide article-recommendation__slide'>
-              <h3 className='article-recommendation__caption'>Название статьи</h3>
-              <p className='article-recommendation__description'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <div className='article-recommendation__image'>
-                <Image
-                  src='/assets/img/article-page/slider-1.jpg'
-                  alt=''
-                  width={301}
-                  height={300}
-                />
-              </div>
-            </div>
-            <div className='swiper-slide article-recommendation__slide'>
-              <h3 className='article-recommendation__caption'>Название статьи</h3>
-              <p className='article-recommendation__description'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <div className='article-recommendation__image'>
-                <Image
-                  src='/assets/img/article-page/slider-2.jpg'
-                  alt=''
-                  width={301}
-                  height={300}
-                />
-              </div>
-            </div>
-            <div className='swiper-slide article-recommendation__slide'>
-              <h3 className='article-recommendation__caption'>Название статьи</h3>
-              <p className='article-recommendation__description'>
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <div className='article-recommendation__image'>
-                <Image
-                  src='/assets/img/article-page/slider-3.jpg'
-                  alt=''
-                  width={301}
-                  height={300}
-                />
-              </div>
-            </div>
-            <div className='swiper-slide article-recommendation__slide'>
-              <h3 className='article-recommendation__caption'>Название статьи</h3>
-              <p className='article-recommendation__description'>
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <div className='article-recommendation__image'>
-                <Image
-                  src='/assets/img/article-page/slider-3.jpg'
-                  alt=''
-                  width={301}
-                  height={300}
-                />
-              </div>
-            </div>
-            <div className='swiper-slide article-recommendation__slide'>
-              <h3 className='article-recommendation__caption'>Название статьи</h3>
-              <p className='article-recommendation__description'>
-                magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <div className='article-recommendation__image'>
-                <Image
-                  src='/assets/img/article-page/slider-3.jpg'
-                  alt=''
-                  width={301}
-                  height={300}
-                />
-              </div>
-            </div>
-            <div className='swiper-slide article-recommendation__slide'>
-              <h3 className='article-recommendation__caption'>Название статьи</h3>
-              <p className='article-recommendation__description'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-              <div className='article-recommendation__image'>
-                <Image
-                  src='/assets/img/article-page/slider-1.jpg'
-                  alt=''
-                  width={301}
-                  height={300}
-                />
-              </div>
-            </div>
-          </div>
-          
-        </div> */}
       </div>
     </section>
   )
