@@ -6,7 +6,7 @@ import ArticlesListItem from './articles-list-item'
 
 const ArticlesList = async () => {
 
-  const reqUrl = `${process.env.BASE_URL}/api/articlemnews?populate[2]=ImageBlock&fields[0]=title&fields[1]=Description`
+  const reqUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/articlemnews?populate[2]=ImageBlock&fields[0]=title&fields[1]=Description`
   const headersList = {
     "Authorization": `bearer ${process.env.TOKEN}`,
    }

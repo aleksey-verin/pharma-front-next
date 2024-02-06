@@ -24,7 +24,7 @@ const ArticleContent = ({ article }: { article: Article }) => {
           return (
             <div  key={index} className='image-container'>
               <Image
-                src={`${process.env.BASE_URL}${item.image.data.attributes.url}`}
+                src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image.data.attributes.url}`}
                 alt='picture'
                 width={1131}
                 height={600}
@@ -38,7 +38,7 @@ const ArticleContent = ({ article }: { article: Article }) => {
             <div  key={index} className='image-block'>
               <div>
                 <Image
-                  src={`${process.env.BASE_URL}${item.image1.data.attributes.url}`}
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image1.data.attributes.url}`}
                   alt='image'
                   width={389.5}
                   height={500}
@@ -46,7 +46,7 @@ const ArticleContent = ({ article }: { article: Article }) => {
               </div>
               <div>
                 <Image
-                  src={`${process.env.BASE_URL}${item.image2.data.attributes.url}`}
+                  src={`${process.env.NEXT_PUBLIC_BASE_URL}${item.image2.data.attributes.url}`}
                   alt='image'
                   width={389.5}
                   height={500}
@@ -70,7 +70,7 @@ const ArticleContent = ({ article }: { article: Article }) => {
         <div className='article-promo__container container'>
           <Image
             className='article-promo__image'
-            src={`${process.env.BASE_URL}${ImageBlock.data.attributes.url}`}
+            src={`${process.env.NEXT_PUBLIC_BASE_URL}${ImageBlock.data.attributes.url}`}
             alt=''
             width={497}
             height={457}

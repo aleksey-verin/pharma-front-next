@@ -13,7 +13,7 @@ const ArticlesListItem = ({title, description, image, id}:{title: string, descri
       </div>
       <div className='articles__image'>
         <picture>
-          <Image src={`${process.env.BASE_URL}${image}`} alt='' width={302} height={300} />
+          <Image src={`${process.env.NEXT_PUBLIC_BASE_URL}${image}`} alt='' width={302} height={300} />
         </picture>
       </div>
     </Link>
