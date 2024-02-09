@@ -24,7 +24,8 @@ const Article1 = async ({params}: {params: {slug: string}}) => {
    
    let request = await fetch(reqUrl, { 
      method: "GET",
-     headers: headersList
+     headers: headersList,
+     cache: 'no-store'
    });
   const articlesList = await request.json() as ArticleList
 
