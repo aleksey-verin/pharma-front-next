@@ -13,7 +13,8 @@ const ArticlesList = async () => {
    
    let request = await fetch(reqUrl, { 
      method: "GET",
-     headers: headersList
+     headers: headersList,
+     cache: 'no-store'
    });
   const articles = await request.json() as ArticleList
 
