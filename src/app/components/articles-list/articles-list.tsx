@@ -4,21 +4,7 @@ import Link from 'next/link'
 import { ArticleList } from './types'
 import ArticlesListItem from './articles-list-item'
 
-const ArticlesList = async () => {
-
-  const reqUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/api/articlemnews?populate[2]=ImageBlock&fields[0]=title&fields[1]=Description`
-  const headersList = {
-    "Authorization": `bearer ${process.env.TOKEN}`,
-   }
-   
-   let request = await fetch(reqUrl, { 
-     method: "GET",
-     headers: headersList,
-     cache: 'no-store'
-   });
-  const articles = await request.json() as ArticleList
-
-  // http://localhost:1337/api/articlemnews?populate[2]=ImageBlock&fields[0]=title&fields[1]=Description
+const ArticlesList = async ({ articles }: { articles: ArticleList}) => {
 
   return (
     <section className='articles' id='articles'>
